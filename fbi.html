@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FBI - Oficina Federal de Investigación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+        /* Custom styles for FBI theme */
+        .fbi-header {
+            background-color: #1e3a8a; /* Dark Blue */
+            color: white;
+        }
+        .fbi-header a {
+            color: #e0e7ff; /* Lighter blue for links */
+            transition: color 0.3s ease;
+        }
+        .fbi-header a:hover, .fbi-header a.active {
+            color: white;
+            text-decoration: underline;
+        }
+        .fbi-section-title {
+            color: #1e3a8a; /* Dark Blue */
+            border-bottom: 2px solid #3b82f6; /* Medium Blue */
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .fbi-card {
+            background-color: white;
+            border: 1px solid #e5e7eb; /* Gray border */
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .fbi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .fbi-button {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .fbi-button:hover {
+            background-color: #1d4ed8; /* Slightly lighter blue on hover */
+        }
+        /* Specific style for report tip button */
+        .fbi-report-button {
+             background-color: #dc2626; /* Red */
+             color: white;
+             padding: 0.75rem 1.5rem;
+             border-radius: 0.375rem;
+             font-weight: 600;
+             transition: background-color 0.3s ease;
+        }
+        .fbi-report-button:hover {
+             background-color: #b91c1c; /* Darker Red */
+        }
+        .fbi-footer {
+            background-color: #374151; /* Dark Gray */
+            color: #d1d5db; /* Light Gray Text */
+        }
+        .fbi-footer a {
+            color: #9ca3af; /* Medium Gray Links */
+            transition: color 0.3s ease;
+        }
+        .fbi-footer a:hover {
+            color: white;
+        }
+        /* Ensure content takes full height */
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="fbi-header shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-2xl font-bold flex items-center">
+                    <img src="https://placehold.co/40x40/ffffff/1e3a8a?text=FBI" alt="[Logotipo del FBI]" class="mr-2 rounded-full">
+                    FBI
+                </a>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#about" class="hover:text-white">Acerca de Nosotros</a>
+                    <a href="#investigations" class="hover:text-white">Qué Investigamos</a>
+                    <a href="#most-wanted" class="hover:text-white">Más Buscados</a>
+                    <a href="#careers" class="hover:text-white">Carreras</a>
+                    <a href="#news" class="hover:text-white">Noticias</a>
+                    <a href="#report-tip" class="hover:text-white">Reportar Pista</a>
+                    <a href="#contact" class="hover:text-white">Contacto</a>
+                    <a href="#report-tip" class="fbi-report-button px-4 py-2 rounded-md font-semibold transition duration-300">Reportar Pista</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#about" class="block px-3 py-2 rounded-md hover:bg-blue-700">Acerca de Nosotros</a>
+                <a href="#investigations" class="block px-3 py-2 rounded-md hover:bg-blue-700">Qué Investigamos</a>
+                <a href="#most-wanted" class="block px-3 py-2 rounded-md hover:bg-blue-700">Más Buscados</a>
+                <a href="#careers" class="block px-3 py-2 rounded-md hover:bg-blue-700">Carreras</a>
+                <a href="#news" class="block px-3 py-2 rounded-md hover:bg-blue-700">Noticias</a>
+                <a href="#report-tip" class="block px-3 py-2 rounded-md hover:bg-blue-700">Reportar Pista</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md hover:bg-blue-700">Contacto</a>
+                <a href="#report-tip" class="block fbi-report-button px-3 py-2 rounded-md font-semibold text-center transition duration-300">Reportar Pista</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow">
+
+        <section id="home" class="relative text-white overflow-hidden" style="background: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('https://placehold.co/1920x600/cccccc/ffffff?text=Imagen+Institucional+del+FBI') no-repeat center center; background-size: cover;">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-40 text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Oficina Federal de Investigación</h1>
+                <p class="text-lg md:text-2xl mb-8 font-light">Protegiendo al pueblo estadounidense y defendiendo la Constitución de los Estados Unidos.</p>
+                <div class="space-x-4">
+                    <a href="#about" class="bg-white text-blue-800 px-6 py-3 rounded-md font-semibold hover:bg-gray-200 transition duration-300">Conoce Más</a>
+                    <a href="#report-tip" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-semibold hover:bg-white hover:text-blue-800 transition duration-300">Enviar una Pista Anónima</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold fbi-section-title">Acerca de Nosotros</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="fbi-card p-6">
+                        <div class="text-blue-600 mb-4"><i class="fas fa-landmark fa-2x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Nuestra Historia</h3>
+                        <p class="text-gray-600">Fundado en 1908, el FBI ha evolucionado para enfrentar amenazas cambiantes, desde la delincuencia organizada hasta el terrorismo y el ciberdelito, siempre con el compromiso de proteger a la nación.</p>
+                        <a href="https://www.fbi.gov/history" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-blue-600 hover:underline font-medium">Leer más sobre la historia →</a>
+                    </div>
+                    <div class="fbi-card p-6">
+                        <div class="text-blue-600 mb-4"><i class="fas fa-bullseye fa-2x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Misión y Prioridades</h3>
+                        <p class="text-gray-600">Nuestra misión es proteger a EE. UU. de amenazas terroristas y de inteligencia extranjera, hacer cumplir las leyes penales federales y proporcionar liderazgo y servicios de justicia penal.</p>
+                         <a href="https://www.fbi.gov/about/mission-and-priorities" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-blue-600 hover:underline font-medium">Ver prioridades actuales →</a>
+                    </div>
+                    <div class="fbi-card p-6">
+                        <div class="text-blue-600 mb-4"><i class="fas fa-sitemap fa-2x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Liderazgo y Estructura</h3>
+                        <p class="text-gray-600">Dirigido por un Director nominado por el Presidente, el FBI opera a través de su sede central en Washington D.C., 56 oficinas de campo principales y numerosas oficinas satélite y puestos en el extranjero.</p>
+                         <a href="https://www.fbi.gov/about/leadership-and-structure" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-blue-600 hover:underline font-medium">Conocer la estructura →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="investigations" class="py-16 md:py-24 bg-gray-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold fbi-section-title">Qué Investigamos</h2>
+                <p class="text-lg text-gray-700 mb-12 text-center max-w-3xl mx-auto">El FBI tiene jurisdicción sobre una amplia gama de delitos federales. Nuestras principales prioridades de investigación incluyen:</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <div class="fbi-card p-6 text-center">
+                        <div class="text-red-600 mb-4"><i class="fas fa-bomb fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Terrorismo</h3>
+                        <p class="text-gray-600 text-sm">Investigación y prevención de actos terroristas nacionales e internacionales.</p>
+                    </div>
+                    <div class="fbi-card p-6 text-center">
+                        <div class="text-blue-800 mb-4"><i class="fas fa-user-secret fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Contrainteligencia</h3>
+                        <p class="text-gray-600 text-sm">Protección contra operaciones de espionaje y actividades de inteligencia extranjera.</p>
+                    </div>
+                    <div class="fbi-card p-6 text-center">
+                        <div class="text-green-600 mb-4"><i class="fas fa-laptop-code fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Ciberdelincuencia</h3>
+                        <p class="text-gray-600 text-sm">Lucha contra intrusiones informáticas, robo de propiedad intelectual y fraude en línea.</p>
+                    </div>
+                     <div class="fbi-card p-6 text-center">
+                        <div class="text-yellow-600 mb-4"><i class="fas fa-gavel fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Corrupción Pública</h3>
+                        <p class="text-gray-600 text-sm">Investigación de sobornos, fraude y abuso de poder por parte de funcionarios públicos.</p>
+                    </div>
+                     <div class="fbi-card p-6 text-center">
+                        <div class="text-purple-600 mb-4"><i class="fas fa-balance-scale fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Derechos Civiles</h3>
+                        <p class="text-gray-600 text-sm">Protección de los derechos civiles y investigación de crímenes de odio.</p>
+                    </div>
+                    <div class="fbi-card p-6 text-center">
+                         <div class="text-gray-700 mb-4"><i class="fas fa-handcuffs fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Crimen Organizado</h3>
+                        <p class="text-gray-600 text-sm">Desmantelamiento de empresas criminales nacionales y transnacionales.</p>
+                    </div>
+                    <div class="fbi-card p-6 text-center">
+                        <div class="text-orange-600 mb-4"><i class="fas fa-skull-crossbones fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Delitos Violentos</h3>
+                        <p class="text-gray-600 text-sm">Investigación de secuestros, robos de bancos, asesinatos seriales y pandillas violentas.</p>
+                    </div>
+                     <div class="fbi-card p-6 text-center">
+                        <div class="text-teal-600 mb-4"><i class="fas fa-biohazard fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Armas de Destrucción Masiva</h3>
+                        <p class="text-gray-600 text-sm">Prevención de la proliferación y uso de armas químicas, biológicas, radiológicas y nucleares.</p>
+                    </div>
+                </div>
+                 <div class="text-center mt-12">
+                    <a href="https://www.fbi.gov/investigate" target="_blank" rel="noopener noreferrer" class="fbi-button">Ver todas las áreas de investigación</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="most-wanted" class="py-16 md:py-24 bg-white">
+             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold fbi-section-title">Los Más Buscados por el FBI</h2>
+                <p class="text-lg text-gray-700 mb-12 text-center max-w-3xl mx-auto">Ayúdenos a localizar a estos individuos. Si tiene información, comuníquese con su oficina local del FBI o envíe una pista en línea.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                    <div class="fbi-card overflow-hidden">
+                        <img src="https://placehold.co/400x300/e2e8f0/718096?text=Zabala" alt="[Foto de Zabala]" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-red-700">ZABALA</h3>
+                            <p class="text-sm text-gray-600 mb-2">Motivo: Exceso de facha.</p>
+                            <p class="text-xs text-gray-500 mb-3">Recompensa: $XXX,XXX</p>
+                            <a href="https://www.fbi.gov/wanted" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline font-medium">Ver detalles →</a>
+                        </div>
+                    </div>
+                    <div class="fbi-card overflow-hidden">
+                        <img src="https://placehold.co/400x300/e2e8f0/718096?text=Valen" alt="[Foto de Valen]" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-red-700">VALEN</h3>
+                            <p class="text-sm text-gray-600 mb-2">Motivo: Fuerte.</p>
+                             <p class="text-xs text-gray-500 mb-3">Recompensa: $YYY,YYY</p>
+                             <a href="https://www.fbi.gov/wanted" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline font-medium">Ver detalles →</a>
+                        </div>
+                    </div>
+                     <div class="fbi-card overflow-hidden">
+                        <img src="https://placehold.co/400x300/e2e8f0/718096?text=Pedro" alt="[Foto de Pedro]" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-red-700">PEDRO</h3>
+                            <p class="text-sm text-gray-600 mb-2">Motivo: Fachero.</p>
+                             <p class="text-xs text-gray-500 mb-3">Recompensa: $ZZZ,ZZZ</p>
+                             <a href="https://www.fbi.gov/wanted" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline font-medium">Ver detalles →</a>
+                        </div>
+                    </div>
+                 </div>
+                 </div>
+        </section>
+
+        <section id="careers" class="py-16 md:py-24 bg-gray-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold fbi-section-title">Carreras en el FBI</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Únete a Nuestro Equipo</h3>
+                        <p class="text-gray-700 mb-4">El FBI busca individuos dedicados, íntegros y talentosos para una variedad de roles cruciales. Ya sea como Agente Especial en la primera línea o como profesional de apoyo esencial, tu trabajo tendrá un impacto directo en la seguridad de nuestra nación.</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+                            <li>Oportunidades para Agentes Especiales.</li>
+                            <li>Puestos para analistas de inteligencia, científicos forenses, especialistas en TI, lingüistas y más.</li>
+                            <li>Programas de pasantías para estudiantes.</li>
+                            <li>Beneficios competitivos y desarrollo profesional continuo.</li>
+                        </ul>
+                         <a href="https://www.fbijobs.gov/" target="_blank" rel="noopener noreferrer" class="fbi-button">Explorar Oportunidades de Carrera</a>
+                    </div>
+                    <div>
+                         <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Equipo+del+FBI+en+Acción" alt="[Imagen del equipo del FBI]" class="rounded-lg shadow-lg w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold fbi-section-title">Noticias e Historias</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="fbi-card p-6">
+                        <p class="text-sm text-gray-500 mb-2">20 de Abril, 2025 | Comunicado de Prensa</p>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">El FBI Desmantela Red Internacional de Fraude Cibernético</h3>
+                        <p class="text-gray-600 text-sm mb-4">Una operación coordinada llevó al arresto de múltiples individuos responsables de millones en pérdidas...</p>
+                        <a href="https://www.fbi.gov/news/press-releases" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline font-medium">Leer más →</a>
+                    </div>
+                    <div class="fbi-card p-6">
+                        <p class="text-sm text-gray-500 mb-2">18 de Abril, 2025 | Historia Destacada</p>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Agente del FBI Recibe Medalla al Valor por Acto Heroico</h3>
+                        <p class="text-gray-600 text-sm mb-4">El Agente Especial [Nombre] fue reconocido por su valentía durante un enfrentamiento peligroso...</p>
+                         <a href="https://www.fbi.gov/news/stories" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline font-medium">Leer más →</a>
+                    </div>
+                    <div class="fbi-card p-6">
+                        <p class="text-sm text-gray-500 mb-2">15 de Abril, 2025 | Discurso</p>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Director del FBI Habla sobre las Amenazas Emergentes en Conferencia de Seguridad</h3>
+                        <p class="text-gray-600 text-sm mb-4">El Director [Apellido] destacó los desafíos de la inteligencia artificial y el ransomware...</p>
+                         <a href="https://www.fbi.gov/news/speeches" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline font-medium">Leer transcripción →</a>
+                    </div>
+                </div>
+                 <div class="text-center mt-12">
+                     <a href="https://www.fbi.gov/news" target="_blank" rel="noopener noreferrer" class="fbi-button">Ver Todas las Noticias</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="report-tip" class="py-16 md:py-24 bg-red-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-red-800 border-b-2 border-red-500 pb-2 mb-8">Reportar una Pista Anónima</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Su Información Puede Ser Crucial</h3>
+                        <p class="text-gray-700 mb-4">Si tiene información sobre actividades sospechosas, delitos federales, amenazas terroristas o fugitivos, su pista puede marcar la diferencia. Garantizamos la confidencialidad.</p>
+                        <p class="text-gray-700 mb-6">Puede proporcionar información de las siguientes maneras:</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-phone fa-fw text-red-700 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-semibold">Llamar a la Línea de Pistas del FBI:</span>
+                                    <p class="text-gray-600">1-800-CALL-FBI (1-800-225-5324)</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-envelope fa-fw text-red-700 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-semibold">Enviar un Correo Electrónico (Solo para información no urgente):</span>
+                                    <p class="text-gray-600">
+                                        <a href="mailto:leonardodivotti549@gmail.com" class="text-blue-600 hover:underline">leonardodivotti549@gmail.com</a>
+                                        <br>
+                                        <span class="text-xs text-red-700">(Nota: Este es un email de demostración. En un sitio real, se usaría un formulario seguro.)</span>
+                                    </p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <i class="fas fa-building fa-fw text-red-700 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-semibold">Contactar a su Oficina Local del FBI:</span>
+                                     <p class="text-gray-600">Use la <a href="#contact" class="text-blue-600 hover:underline">sección de Contacto</a> para encontrar la oficina más cercana.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <p class="mt-6 text-sm text-red-800 font-medium">En caso de emergencia inmediata, siempre llame al 9-1-1.</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-user-secret fa-9x text-red-300"></i>
+                        <p class="mt-4 text-lg font-semibold text-red-700">Su identidad permanecerá confidencial.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section id="resources" class="py-16 md:py-24 bg-gray-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold fbi-section-title">Recursos Públicos</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                     <div class="fbi-card p-6 text-center">
+                        <div class="text-red-600 mb-4"><i class="fas fa-flag fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Reportar una Pista (Tip Line)</h3>
+                        <p class="text-gray-600 text-sm mb-4">Si tiene información sobre un delito federal o una amenaza a la seguridad nacional, repórtela aquí.</p>
+                         <a href="https://tips.fbi.gov/" target="_blank" rel="noopener noreferrer" class="fbi-report-button">Enviar Pista</a>
+                    </div>
+                     <div class="fbi-card p-6 text-center">
+                        <div class="text-blue-600 mb-4"><i class="fas fa-shield-alt fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Servicios a Víctimas</h3>
+                        <p class="text-gray-600 text-sm mb-4">Información y asistencia para víctimas de delitos federales investigados por el FBI.</p>
+                         <a href="https://www.fbi.gov/resources/victim-assistance" target="_blank" rel="noopener noreferrer" class="fbi-button">Acceder a Servicios</a>
+                    </div>
+                    <div class="fbi-card p-6 text-center">
+                        <div class="text-green-600 mb-4"><i class="fas fa-folder-open fa-3x"></i></div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Solicitudes FOIA</h3>
+                        <p class="text-gray-600 text-sm mb-4">Cómo solicitar acceso a registros del FBI bajo la Ley de Libertad de Información (FOIA).</p>
+                         <a href="https://www.fbi.gov/services/information-management/foipa" target="_blank" rel="noopener noreferrer" class="fbi-button">Información FOIA</a>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold fbi-section-title">Contacto</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-semibold text-gray-800">Información General</h3>
+                        <p class="text-gray-700">Para consultas generales, puede contactar la sede del FBI o su oficina de campo local.</p>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <p class="font-semibold text-gray-800">Sede del FBI</p>
+                            <p class="text-gray-600">J. Edgar Hoover Building</p>
+                            <p class="text-gray-600">935 Pennsylvania Avenue, NW</p>
+                            <p class="text-gray-600">Washington, D.C. 20535-0001</p>
+                            <p class="text-gray-600">(202) 324-3000</p>
+                        </div>
+                         <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <p class="font-semibold text-gray-800">Emergencias</p>
+                            <p class="text-gray-600">En caso de emergencia, llame al 9-1-1.</p>
+                         </div>
+                         <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <p class="font-semibold text-gray-800">Reportar Pistas</p>
+                             <p class="text-gray-600">Use el enlace <a href="#report-tip" class="text-blue-600 hover:underline">Reportar Pista</a> o llame al 1-800-CALL-FBI.</p>
+                         </div>
+                    </div>
+                    <div>
+                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Encuentra tu Oficina Local</h3>
+                         <p class="text-gray-700 mb-4">Selecciona tu estado para encontrar la información de contacto de la oficina de campo del FBI más cercana.</p>
+                         <form action="https://www.fbi.gov/contact-us/field-offices" method="get" target="_blank">
+                            <label for="state-select" class="sr-only">Selecciona un estado</label>
+                            <select id="state-select" name="state" class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 mb-4" disabled>
+                                <option value="">-- Ver en fbi.gov --</option>
+                                </select>
+                            <button type="submit" class="fbi-button w-full">Buscar Oficina en fbi.gov</button>
+                         </form>
+                         <div id="office-results" class="mt-6 text-sm text-gray-600">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="fbi-footer py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h5 class="font-semibold text-white mb-3">Acerca de</h5>
+                    <ul class="space-y-2">
+                        <li><a href="https://www.fbi.gov/about/mission-and-priorities" target="_blank" rel="noopener noreferrer">Misión</a></li>
+                        <li><a href="https://www.fbi.gov/investigate" target="_blank" rel="noopener noreferrer">Investigaciones</a></li>
+                        <li><a href="https://www.fbi.gov/history" target="_blank" rel="noopener noreferrer">Historia</a></li>
+                        <li><a href="https://www.fbi.gov/about/leadership-and-structure" target="_blank" rel="noopener noreferrer">Liderazgo</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h5 class="font-semibold text-white mb-3">Recursos</h5>
+                    <ul class="space-y-2">
+                        <li><a href="https://tips.fbi.gov/" target="_blank" rel="noopener noreferrer">Reportar Pista</a></li>
+                        <li><a href="https://www.fbi.gov/resources/victim-assistance" target="_blank" rel="noopener noreferrer">Servicios a Víctimas</a></li>
+                        <li><a href="https://www.fbi.gov/services/information-management/foipa" target="_blank" rel="noopener noreferrer">FOIA</a></li>
+                        <li><a href="https://www.fbi.gov/stats-services/ucr" target="_blank" rel="noopener noreferrer">Estadísticas Criminales (UCR)</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h5 class="font-semibold text-white mb-3">Carreras</h5>
+                    <ul class="space-y-2">
+                        <li><a href="https://www.fbijobs.gov/special-agents" target="_blank" rel="noopener noreferrer">Agentes Especiales</a></li>
+                        <li><a href="https://www.fbijobs.gov/professional-staff" target="_blank" rel="noopener noreferrer">Personal Profesional</a></li>
+                        <li><a href="https://www.fbijobs.gov/students-and-interns" target="_blank" rel="noopener noreferrer">Pasantías</a></li>
+                        <li><a href="https://www.fbijobs.gov/career-paths" target="_blank" rel="noopener noreferrer">Proceso de Solicitud</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h5 class="font-semibold text-white mb-3">Conéctate</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#contact">Contacto</a></li>
+                        <li><a href="https://www.fbi.gov/contact-us/field-offices" target="_blank" rel="noopener noreferrer">Oficinas Locales</a></li>
+                        <li><a href="https://www.fbi.gov/news" target="_blank" rel="noopener noreferrer">Noticias</a></li>
+                        <li class="flex space-x-3 pt-2">
+                             <a href="https://twitter.com/FBI" target="_blank" rel="noopener noreferrer" title="FBI en Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+                             <a href="https://www.facebook.com/FBI" target="_blank" rel="noopener noreferrer" title="FBI en Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
+                             <a href="https://www.youtube.com/user/fbi" target="_blank" rel="noopener noreferrer" title="FBI en YouTube"><i class="fab fa-youtube fa-lg"></i></a>
+                             <a href="https://www.instagram.com/fbi/" target="_blank" rel="noopener noreferrer" title="FBI en Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                 <div class="mb-4 space-x-4">
+                    <a href="https://www.fbi.gov/policy-and-guidance/privacy-policy" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
+                    <a href="https://www.fbi.gov/policy-and-guidance/legal-notices" target="_blank" rel="noopener noreferrer">Avisos Legales</a>
+                    <a href="https://www.fbi.gov/accessibility" target="_blank" rel="noopener noreferrer">Accesibilidad</a>
+                    <a href="https://www.fbi.gov/services/information-management/foipa" target="_blank" rel="noopener noreferrer">FOIA</a>
+                    <a href="https://www.usa.gov/" target="_blank" rel="noopener noreferrer">USA.gov</a>
+                </div>
+                <p>&copy; 2025 Oficina Federal de Investigación. Un componente del Departamento de Justicia de EE. UU.</p>
+                 <p>Este es un sitio de demostración y no está afiliado al FBI real.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a'); // Get all links in mobile menu
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuButton.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                 mobileMenu.classList.add('hidden'); // Hide menu
+                 const icon = menuButton.querySelector('i');
+                 icon.classList.remove('fa-times');
+                 icon.classList.add('fa-bars');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Check if it's an internal link for smooth scroll
+                if (this.hash !== "" && this.pathname === window.location.pathname) {
+                    e.preventDefault();
+                    const hash = this.hash;
+                    const targetElement = document.querySelector(hash);
+                    if (targetElement) {
+                         // Adjust offset dynamically based on header height
+                         const headerOffset = document.querySelector('header').offsetHeight;
+                         const elementPosition = targetElement.getBoundingClientRect().top;
+                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                         window.scrollTo({
+                             top: offsetPosition,
+                             behavior: "smooth"
+                         });
+                    }
+                }
+                // Allow default behavior for external links (target="_blank")
+            });
+        });
+    </script>
+
+</body>
+</html>
